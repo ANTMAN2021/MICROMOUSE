@@ -173,62 +173,7 @@ int main(void)
  	        if (rsp < 0) {
  	        rsp = 0;
  	        }
-
-
-
- 	 if (front > 100){
- 		TIM1->CCR1 = 0;
- 		HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
- 		TIM1->CCR4 = 0;
- 		HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_4);
- 		HAL_Delay(100);
- 	 	 	 	 TIM1->CCR2 = 200;
- 	        	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
- 	        	TIM1->CCR3 = 200;
- 	        	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
- 	        	HAL_Delay(100);
- 	        	TIM1->CCR2 = 0;
-				HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
- 	        	TIM1->CCR3 = 0;
- 	        	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
- 	        	HAL_Delay(100);
-
-
-
- 	        	TIM1->CCR1= 200;
-        	   	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-        	   	TIM1->CCR3= 200;
-        	   	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-        	   	HAL_Delay(100);
-        	   	TIM1->CCR1= 0;
-        	   	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
-        	   	TIM1->CCR3= 0;
-        	   	HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
- 	        	HAL_Delay(100);
-
-
- 	      	TIM1->CCR1 = 200;
- 	        	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
- 	           	TIM1->CCR4 = 200;
- 	           	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
- 	        	HAL_Delay(100);
- 	        	TIM1->CCR1 = 000;
- 	        	 	        	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
- 	        	 	           	TIM1->CCR4 = 000;
- 	        	 	           	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
- 	        	 	        	HAL_Delay(100);
-
- 	        }
-
-	       //HAL_Delay(100);
- 	else {
- 	 	 	  TIM1->CCR1 = lsp;
- 	    	 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
- 	    	 	TIM1->CCR4 = rsp;
- 	    	 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-
- 	 }
-    }
+     
   /* USER CODE END 3 */
 }
 
@@ -260,55 +205,6 @@ void SystemClock_Config(void)
 
   /** Initializes the CPU, AHB and APB buses clocks
   */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
-
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
-  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
-  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
-  {
-    Error_Handler();
-  }
-}
-
-/**
-  * @brief ADC1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_ADC1_Init(void)
-{
-
-  /* USER CODE BEGIN ADC1_Init 0 */
-
-  /* USER CODE END ADC1_Init 0 */
-
-  ADC_ChannelConfTypeDef sConfig = {0};
-
-  /* USER CODE BEGIN ADC1_Init 1 */
-
-  /* USER CODE END ADC1_Init 1 */
-
-  /** Common config
-  */
-  hadc1.Instance = ADC1;
-  hadc1.Init.ScanConvMode = ADC_SCAN_ENABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
-  hadc1.Init.DiscontinuousConvMode = DISABLE;
-  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
-  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 4;
-  if (HAL_ADC_Init(&hadc1) != HAL_OK)
-  {
-    Error_Handler();
   }
 
   /** Configure Regular Channel
